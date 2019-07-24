@@ -297,7 +297,6 @@ params.ref_panels.each { ref ->
     chromosomes.each { chrm ->
         vcf = sprintf(params.ref_panels[ref.key].vcfFile, chrm)
         m3vcf = sprintf(params.ref_panels[ref.key].m3vcfFile, chrm)
-        if(!file(sample).exists()) exit 1, "File ${sample} not found. Please check your config file."
         if(!file(vcf).exists()) exit 1, "File ${vcf} not found. Please check your config file."
         if(!file(m3vcf).exists()) exit 1, "File ${m3vcf} not found. Please check your config file."
     }
