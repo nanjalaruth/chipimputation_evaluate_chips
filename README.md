@@ -1,4 +1,4 @@
-# Imputation Workflow h3abionet/chipimputation
+# Chip imputation evaluation Workflow h3abionet/chipimputation_evaluate_chips
 
 [![Build Status](https://travis-ci.org/h3abionet/chipimputation.svg?branch=master)](https://travis-ci.org/h3abionet/chipimputation)
 [![Nextflow](https://img.shields.io/badge/nextflow-%E2%89%A50.30.0-brightgreen.svg)](https://www.nextflow.io/)
@@ -19,10 +19,8 @@ It comes with singularity containers making installation trivial and results hig
 The evaluate_chips pipeline comes with documentation about the pipeline, found in the `docs/` directory:
 
 1. [Installation and Configuration](docs/installation.md)
-    * [Installation](docs/configuration/local.md)
-    * [Adding your own configuration](docs/configuration/adding_your_own.md)
-2. [Running the pipeline](docs/usage.md)
-3. [Output and how to interpret the results](docs/output.md)
+2. [Configuration for other clusters](docs/configuration/adding_your_own.md)
+3. [Running the pipeline](docs/usage.md)
 
 ### Setup (native cluster)
 
