@@ -34,7 +34,7 @@ See [nextflow.io](https://www.nextflow.io/) for further instructions on how to i
 ## 2) Install the pipeline
 
 #### 2.1) Automatic
-This pipeline itself needs no installation - NextFlow will automatically fetch it from GitHub if `h3abionet/chipimputation` is specified as the pipeline name with the ecorrect `evaluate_chips` branch with: `nextflow pull h3abionet/chipimputation`
+This pipeline itself needs no installation - NextFlow will automatically fetch it from GitHub if `h3abionet/chipimputation` is specified as the pipeline name with the ecorrect `evaluate_chips` branch with: `h3abionet/chipimputation_evaluate_chips`
 
 
 #### 2.2) Offline
