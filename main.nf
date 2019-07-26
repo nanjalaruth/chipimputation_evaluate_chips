@@ -257,7 +257,8 @@ if (!(notValid_chrs.isEmpty())){
 
 ignore_chrms = [:]
 toImpute_chrms = [:]
-mapFile_cha_1.toSortedList().val.each { target_name, target_vcfFile, mapFile ->
+mapFile_cha_1_list = mapFile_cha_1.toSortedList().val
+mapFile_cha_1_list.each { target_name, target_vcfFile, mapFile ->
     chromosomes_[target_name].each{ chrm ->
         chrm = chrm.toInteger()
         if(!(chrm in chromosomes)){
