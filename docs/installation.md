@@ -1,4 +1,4 @@
-# h3achipimputation: Installation
+# h3abionet/chipimputation_evaluate_chips: Installation
 
 To start using the h3achipimputation pipeline, follow the steps below:
 
@@ -41,7 +41,7 @@ This pipeline itself needs no installation - NextFlow will automatically fetch i
 The above method requires an internet connection so that Nextflow can download the pipeline files. If you're running on a system that has no internet connection, you'll need to download and transfer the pipeline files manually:
 
 ```bash
-git clone https://github.com/h3abionet/chipimputation.git --branch evaluate_chips
+git clone https://github.com/h3abionet/chipimputation_evaluate_chips.git
 ```
 
 To stop nextflow from looking for updates online, you can tell it to run in offline mode by specifying the following environment variable in your ~/.bashrc file:
@@ -99,7 +99,7 @@ The process is very similar: running the pipeline with the option `-profile test
 If running offline with Singularity, you'll need to download and transfer the Singularity image first:
 
 ```bash
-singularity pull --name h3abionet-chipimputation-minimac4.simg shub://h3abionet/chipimputation
+singularity pull --name h3abionet-chipimputation-minimac4.simg docker://quay.io/h3abionet_org/impute2:v3
 ```
 
 Once transferred, use `-with-singularity` and specify the path to the image file:
@@ -122,7 +122,7 @@ Use this parameter to choose a configuration profile. Profiles can give configur
     * Runs locally and expects all software to be installed and available on the `PATH`.
 * `singularity`
     * A generic configuration profile to be used with [Singularity](http://singularity.lbl.gov/)
-    * Pulls software from singularity-hub
+    * Pulls software from quay.io
 * `test`
     * A profile with a complete configuration for automated testing
     * Includes links to test data so needs no other parameters

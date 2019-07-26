@@ -1,4 +1,4 @@
-# Configuration for other clusters
+# h3abionet/chipimputation_evaluate_chips: Configuration for other clusters
 
 It is entirely possible to run this pipeline on other clusters, though you will need to set up your own config file so that the pipeline knows how to work with your cluster.
 
