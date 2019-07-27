@@ -418,8 +418,7 @@ process extract_tag_from_target_vcf {
             --regions-file ${tagFile} \
             ${target_vcfFile} \
             -Oz -o ${target_name}_${tagName}_tmp.vcf.gz
-        bcftools view -m2 -M2 -v snps -i 'MAC > 0' ${target_name}_${tagName}_tmp.vcf.gz -Oz -o ${target_name}_${tagName}_tmp1.vcf.gz
-        bcftools sort ${target_name}_${tagName}_tmp1.vcf.gz -Oz -o ${tag_target_vcfFile}
+        bcftools sort ${target_name}_${tagName}_tmp.vcf.gz -Oz -o ${tag_target_vcfFile}
         rm -f ${target_name}_${tagName}_tmp*.vcf.gz
         """
 }
