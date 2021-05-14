@@ -7,8 +7,10 @@
 FROM ubuntu:16.04
 
 # File Author / Maintainer
-MAINTAINER Mamana Mbiyavanga "mamana.mbiyavanga@uct.ac.za"
+LABEL maintenair="Mamana Mbiyavanga mamana.mbiyavanga@uct.ac.za"
 
+ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
+ENV PATH /opt/conda/bin:$PATH
 
 ################## BEGIN INSTALLATION ######################
 # Install Basic tools
