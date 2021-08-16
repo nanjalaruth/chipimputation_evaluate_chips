@@ -243,55 +243,17 @@ workflow impute5convert{
 }
 
 workflow{
-    // check_files([params.eagle_genetic_map])
-    // params.datasets.each { dataset, dataset_vcf, dataset_sample ->
-    //     datasets_ch = Channel.of(dataset)
-    //         .combine(Channel.fromPath(dataset_vcf))
-    //         .combine(Channel.fromPath(dataset_sample))
-    // }
+
     
-    // get_chromosome(datasets_ch.map{ dataset, vcf, sample -> [ dataset, file(vcf), file("${vcf}.tbi") ]})
-
-    // generate_chunks_vcf(get_chromosome.out.map{ dataset, vcf, vcf_idx, map_file -> [ dataset, file(vcf), file(vcf_idx), file(map_file), params.chunk_size ] })
-    // chunks_datas = generate_chunks_vcf.out.flatMap{ dataset, vcf, vcf_idx, chunk_file ->
-    //     datas = []
-    //     chunks = file(chunk_file).text.split()
-    //     chunks.each{ chunk_data ->
-    //         data = chunk_data.split(',')
-    //         chrm = data[0]
-    //         chunk_start = data[1]
-    //         chunk_end = data[2]
-    //         datas << [dataset, chrm, chunk_start, chunk_end, dataset, file(vcf), file(vcf_idx)]
-    //     }
-    //     return datas
-    // }
-    // split_target_to_chunk(chunks_datas)
-
-  
-    // // // // Checkk REF mismacthes 
-    // check_mismatch(split_target_to_chunk.out.map{ dataset, chrm, start, end, tagname, vcf -> [ dataset, chrm, start, end, file(vcf), file(params.reference_genome) ] })
-    // check_mismatch.out.map{ dataset, vcf, chrm, start, end, warn, summary -> no_mismatch(dataset, warn, summary) }
-
-    // // QC
-    // qc_dupl(split_target_to_chunk.out.map{ dataset, chrm, start, end, tagname, vcf -> [ dataset, chrm, start, end, file(vcf)] })
-    // split_multi_allelic(qc_dupl.out)
-    // filter_min_ac(split_multi_allelic.out.map{ dataset, chrm, start, end, vcf -> [ dataset, chrm, start, end, file(vcf), " --min-ac ${params.min_ac} --max-alleles ${params.max_alleles} --min-alleles ${params.min_alleles} "  ] })
-    // vcf_map_simple(filter_min_ac.out.map{ dataset, chrm, start, end, vcf -> [ dataset, chrm, start, end, file(vcf), '', '' ] })
-
-    // // Phasing without a reference
-    // phasing_ch = vcf_map_simple.out.flatMap{ dataset, chrm, start, end, vcf_file, vcf_idx, chip_name, map_file -> 
-    //     phasing_ch_data = [ dataset, chrm, start, end, file(vcf_file), file(params.eagle_genetic_map) ]
-    //     if(!file(map_file).isEmpty()){
-    //         return [ phasing_ch_data ]
-    //     }
-    // }
-    // phasing_vcf_no_ref_chunk(phasing_ch)
-    // combine_vcfs(phasing_vcf_no_ref_chunk.out.groupTuple(by:[0,1]).map{ dataset, chrm, starts, ends, vcfs -> [ dataset, chrm, vcfs ] })
-    // vcf_to_m3vcf(combine_vcfs.out)
-    // vcf_to_bcf(combine_vcfs.out)
-    // vcf_legend(combine_vcfs.out)
     
     preprocess()
     phasing(preprocess.out.qc_data)
+
+    // For Minimac4 
+    vcf_to_m3vcf(phasing.out.phased_data)
+    vcf_to_bcf(phasing.out.phased_data)
+    vcf_legend(phasing.out.phased_data)
+
+    // For IMPUTE5
     impute5convert(phasing.out.phased_data)
 }
