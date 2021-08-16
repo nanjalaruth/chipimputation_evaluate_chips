@@ -147,6 +147,7 @@ process vcf_to_m3vcf {
     script:
         base = file(vcf_chrm_phased.baseName).baseName
         m3vcf_chrm = "${base}.m3vcf.gz"
+        
         """
         Minimac3 \
             --refHaps ${vcf_chrm_phased} \
