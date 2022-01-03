@@ -232,6 +232,7 @@ workflow phasing{
 
     emit:
         phased_data = combine_vcfs.out
+        phased_data.view()
 }
 
 workflow impute5convert{
@@ -252,9 +253,9 @@ workflow{
 
     // For Minimac4 
     vcf_to_m3vcf(phasing.out.phased_data)
-    vcf_to_bcf(phasing.out.phased_data)
+    // vcf_to_bcf(phasing.out.phased_data)
     // vcf_legend(phasing.out.phased_data)
 
     // For IMPUTE5
-    impute5convert(phasing.out.phased_data)
+    // impute5convert(phasing.out.phased_data)
 }
