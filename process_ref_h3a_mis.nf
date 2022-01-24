@@ -110,7 +110,7 @@ process vcf_to_m3vcf {
     label "bigmem10"
 
     input:
-        tuple val(dataset), val(chrm), file(dataset_vcf)
+        tuple val(dataset), val(chrm), file(dataset_vcf), file(dataset_vcf_tbi)
 
     output:
         tuple val(dataset), val(chrm), file(dataset_m3vcf)
@@ -232,14 +232,14 @@ workflow phasing{
 
     emit:
         phased_data = combine_vcfs.out
-        phased_data.view()
+        phased_data
 }
 
 workflow impute5convert{
     take: data
 
     main:
-        convertToImp5(data).view()
+        convertToImp5(data)
     emit:
         data
 }
