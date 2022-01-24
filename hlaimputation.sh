@@ -9,5 +9,4 @@
 
 
 echo "Submitting SLURM job"
-nextflow -c /scratch3/users/nanje/chipimputation_evaluate_chips/conf/ilifu/process_ref_h3a_mis_v4.config \
-    run /scratch3/users/nanje/chipimputation_evaluate_chips/process_ref_h3a_mis.nf -profile singularity,slurm -resume
+nextflow -c process_ref_h3a_mis_v4.config run process_ref_h3a_mis.nf -profile singularity,slurm -resume

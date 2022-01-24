@@ -289,25 +289,6 @@ process filter_min_ac {
         """
  }
 
-process filter_f_missing {
-    tag "min_ac_${dataset}_${chrm}_${start}_${end}"
-    label "bigmem"
-
-    input:
-        tuple val(dataset), val(chrm), val(start), val(end), file(vcf), val(params)
-
-    output:
-        tuple val(dataset), val(chrm), val(start), val(end), file(vcf_out)
-
-    script:
-        base = file(vcf.baseName).baseName
-        vcf_out = "${base}_f-missing.bcf"
-        """
-        bcftools filter -i 'F_MISSING < 0.05' --threads ${task.cpus} ${vcf} -Ob -o ${vcf_out}
-        tabix -f ${vcf_out}
-        """
- }
-
 
 process qc_site_missingness {
     tag "site_missingness_${target_name}_${chrm}:${chunk_start}-${chunk_end}_${ref_name}_${tagName}"
